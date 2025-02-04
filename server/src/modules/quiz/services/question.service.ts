@@ -20,4 +20,11 @@ export class QuestionService{
         await quiz.save()
         return newQuestion
     }
+
+    async findQuestionById(id: number) : Promise<Question | null>{
+        return await this.questionRepository.findOne({
+            where: {id},
+            relations: ['options', 'quiz']
+        });
+    }
 }
